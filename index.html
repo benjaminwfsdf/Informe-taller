@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
   <script>
-  const claveCorrecta = "scanner2025"; // Puedes cambiar esta clave
+  const claveCorrecta = "informes@"; // Puedes cambiar esta clave
 
   const ingreso = prompt("🔐 Ingresa la clave para acceder:");
   if (ingreso !== claveCorrecta) {
     alert("❌ Clave incorrecta. Acceso denegado.");
-    document.write("<h2>Acceso restringido.</h2>");
-    throw new Error("Acceso denegado");
+    window.location.href = "https://www.elsenordelosescaner.cl/"; // 🔁 Reemplaza con tu URL destino
   }
 </script>
+
 
 <head>
   <meta charset="UTF-8">
@@ -193,6 +193,7 @@
     }
   </style>
 </head>
+
 <body onload="document.getElementById('fecha').innerText = new Date().toLocaleDateString('es-CL');">
 
   <div class="titulo">INFORME DE DIAGNOSTICO</div>
