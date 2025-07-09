@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
+  <script>
+  const claveCorrecta = "scanner2025"; // Puedes cambiar esta clave
+
+  const ingreso = prompt("🔐 Ingresa la clave para acceder:");
+  if (ingreso !== claveCorrecta) {
+    alert("❌ Clave incorrecta. Acceso denegado.");
+    document.write("<h2>Acceso restringido.</h2>");
+    throw new Error("Acceso denegado");
+  }
+</script>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,13 +19,19 @@
     @media print {
       @page {
         size: letter;
-        margin: 20mm;
+        margin-top: 6mm;
+        margin-bottom: 6mm;
+        margin-left: 20mm;
+        margin-right: 20mm;
       }
       body {
         margin: 0;
         padding: 0;
         box-shadow: none;
         border: none;
+      }
+      #boton-imprimir {
+        display: none;
       }
     }
 
@@ -146,7 +163,6 @@
     .valor-final {
       margin-top: 20px;
       font-weight: bold;
-      text-align: right;
       font-size: 16px;
       display: flex;
       justify-content: space-between;
@@ -172,7 +188,8 @@
     .nota-footer {
       font-size: 10px;
       text-align: center;
-      margin-top: 20px;
+      margin-top: 10px;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -242,7 +259,6 @@
     <strong>NOTA: COMPROBANTE VALIDO PARA SEGUNDO SCANNER (7 DÍAS)</strong>
   </div>
 
-
   <script>
     function guardarEnGoogleSheets() {
       const patente = document.querySelector('input[name="patente"]').value;
@@ -264,7 +280,7 @@
     }
   </script>
 
-  <button onclick="guardarEnGoogleSheets()" style="position: fixed; bottom: 20px; right: 20px; padding: 10px 20px; font-size: 14px;">
+  <button id="boton-imprimir" onclick="guardarEnGoogleSheets()" style="position: fixed; bottom: 20px; right: 20px; padding: 10px 20px; font-size: 14px;">
     Imprimir y Guardar
   </button>
 
