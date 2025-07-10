@@ -212,17 +212,19 @@
   </div>
 
   <table class="form-grid">
+
+
     <tr>
-      <td><div class="inline"><label>MARCA:</label><input type="text" name="marca"></div></td>
-      <td><div class="inline"><label>MODELO:</label><input type="text" name="modelo"></div></td>
+      <td><div class="inline"><label>MARCA:</label><input type="text" name="marca"style="text-transform: uppercase;">></div></td>
+      <td><div class="inline"><label>MODELO:</label><input type="text" name="modelo"style="text-transform: uppercase;">></div></td>
     </tr>
     <tr>
-      <td><div class="inline"><label>PATENTE:</label><input type="text" name="patente"></div></td>
-      <td><div class="inline"><label>AÑO:</label><input type="text" name="ano"></div></td>
+      <td><div class="inline"><label>PATENTE:</label><input type="text" name="patente" style="text-transform: uppercase;">></div></td>
+      <td><div class="inline"><label>AÑO:</label><input type="text" name="ano"style="text-transform: uppercase;">></div></td>
     </tr>
     <tr>
-      <td><div class="inline"><label>KM:</label><input type="text" name="km"></div></td>
-      <td><div class="inline"><label>MOTOR:</label><input type="text" name="motor"></div></td>
+      <td><div class="inline"><label>KM:</label><input type="text" name="km"style="text-transform: uppercase;">></div></td>
+      <td><div class="inline"><label>MOTOR:</label><input type="text" name="motor"style="text-transform: uppercase;">></div></td>
     </tr>
   </table>
 
@@ -236,7 +238,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><textarea name="codigo_area"></textarea></td>
+        <td><textarea name="codigo_area"style="text-transform: uppercase;"></textarea>></textarea></td>
         <td><textarea name="detalle_area"></textarea></td>
         <td><textarea name="valor_area" style="font-weight:bold; font-size:16px;"></textarea></td>
       </tr>
@@ -261,25 +263,32 @@
   </div>
 
   <script>
-    function guardarEnGoogleSheets() {
-      const patente = document.querySelector('input[name="patente"]').value;
-      const codigo = document.querySelector('textarea[name="codigo_area"]').value;
-      const detalle = document.querySelector('textarea[name="detalle_area"]').value;
+  function guardarEnGoogleSheets() {
+    const patente = document.querySelector('input[name="patente"]').value;
+    const codigo = document.querySelector('textarea[name="codigo_area"]').value;
+    const detalle = document.querySelector('textarea[name="detalle_area"]').value;
 
-      fetch("https://script.google.com/macros/s/AKfycbzTDTkFKdwIqH8E_jDrOWx3chf42XasN-QI0WcCRav9gS9r7gZJ5tRIVVch1T6E1ukw/exec", {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ patente, codigo, detalle })
-      });
+    // Guardar en Google Sheets
+    fetch("https://script.google.com/macros/s/AKfycbzTDTkFKdwIqH8E_jDrOWx3chf42XasN-QI0WcCRav9gS9r7gZJ5tRIVVch1T6E1ukw/exec", {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ patente, codigo, detalle })
+    });
 
-      setTimeout(() => {
-        window.print();
-      }, 1000);
-    }
-  </script>
+    // Imprimir
+    window.print();
+
+    // Esperar brevemente y luego limpiar
+    setTimeout(() => {
+      const campos = document.querySelectorAll('input[type="text"], textarea');
+      campos.forEach(el => el.value = '');
+    }, 1000);
+  }
+</script>
+
 
   <button id="boton-imprimir" onclick="guardarEnGoogleSheets()" style="position: fixed; bottom: 20px; right: 20px; padding: 10px 20px; font-size: 14px;">
     Imprimir y Guardar
