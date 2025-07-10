@@ -75,7 +75,7 @@
     }
 
     .contacto-wrap img {
-      max-height: 120px;
+      max-height: 170px;
       object-fit: contain;
     }
 
@@ -279,13 +279,12 @@
     });
 
     // Imprimir
-    window.print();
+    window.onafterprint = () => {
+  document.querySelectorAll('input[type="text"], textarea').forEach(el => el.value = '');
+};
 
-    // Esperar brevemente y luego limpiar
-    setTimeout(() => {
-      const campos = document.querySelectorAll('input[type="text"], textarea');
-      campos.forEach(el => el.value = '');
-    }, 1000);
+window.print();
+
   }
 </script>
 
